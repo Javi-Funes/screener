@@ -33,7 +33,7 @@ def run_scan_and_generate_report():
     fetcher.fetch_reference_data(symbols_ref)
 
     # 3. Rotación sectorial
-    rotacion, spy_ret = get_rotacion(fetcher, scanner)  # función auxiliar
+    rotacion, spy_ret = get_rotation(fetcher, scanner)  # función auxiliar
 
     # 4. Escanear universos
     resultados_cedears = []
