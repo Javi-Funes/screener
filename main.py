@@ -13,9 +13,42 @@ from report.generator import generar_reporte
 from utils.logger import setup_logger, get_logger
 
 # Universos (podrían ir en config)
-CEDEARS_NYSE = [ ... ]  # la misma lista
-ADRS_ARG_NYSE = { ... }
-PANEL_LIDER_BYMA = { ... }
+CEDEARS_NYSE = [
+    'MELI', 'VIST', 'NU', 'MSFT', 'ORCL', 'HMY', 'SPY', 'USO', 'HUT', 'IBIT',
+    'MU', 'NIO', 'NVDA', 'PBR', 'GOOGL', 'MSTR', 'AMZN', 'SQ', 'MO', 'KO',
+    'AAPL', 'SATL', 'EWZ', 'SH', 'ASTS', 'TSLA', 'VXX', 'BRK-B', 'UNH', 'META',
+    'ETHA', 'IBM', 'CRM', 'GLD', 'GLOB', 'COIN', 'QQQ', 'SLV', 'AMD', 'BAC',
+    'V', 'URA', 'STNE', 'CSCO', 'ANF', 'XLE', 'PLTR', 'GOLD', 'MRNA', 'BITF',
+    'PAGS', 'GPRK',
+]
+
+ADRS_ARG_NYSE = {
+    'GGAL': {'byma': 'GGAL.BA',  'nombre': 'Grupo Galicia',   'ratio': 10},
+    'YPF':  {'byma': 'YPFD.BA',  'nombre': 'YPF',             'ratio': 1},
+    'PAM':  {'byma': 'PAMP.BA',  'nombre': 'Pampa Energia',   'ratio': 25},
+    'BMA':  {'byma': 'BMA.BA',   'nombre': 'Banco Macro',     'ratio': 10},
+    'CEPU': {'byma': 'CEPU.BA',  'nombre': 'Central Puerto',  'ratio': 10},
+    'LOMA': {'byma': 'LOMA.BA',  'nombre': 'Loma Negra',      'ratio': 5},
+    'SUPV': {'byma': 'SUPV.BA',  'nombre': 'Supervielle',     'ratio': 5},
+    'TGS':  {'byma': 'TGSU2.BA', 'nombre': 'TGS',             'ratio': 5},
+    'MELI': {'byma': 'MELI.BA',  'nombre': 'MercadoLibre',    'ratio': 1},
+    'GLOB': {'byma': 'GLOB.BA',  'nombre': 'Globant',         'ratio': 1},
+    'DESP': {'byma': 'DESP.BA',  'nombre': 'Despegar',        'ratio': 1},
+}
+
+PANEL_LIDER_BYMA = {
+    'TXAR.BA':  'Ternium Argentina',
+    'ALUA.BA':  'Aluar',
+    'BBAR.BA':  'BBVA Argentina',
+    'TECO2.BA': 'Telecom Argentina',
+    'COME.BA':  'Sociedad Comercial del Plata',
+    'CVH.BA':   'Cablevision Holding',
+    'MIRG.BA':  'Mirgor',
+    'BYMA.BA':  'BYMA',
+    'VALO.BA':  'Grupo Valores',
+    'EDN.BA':   'Edenor',
+    'CRES.BA':  'Cresud',
+}
 
 logger = get_logger(__name__)
 
