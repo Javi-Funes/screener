@@ -102,19 +102,25 @@ def run_scan_and_generate_report():
     logger.info(f"Reporte generado: {fname_latest}")
     return reporte
 
-def get_rotacion(fetcher, scanner):
+def get_rotation(fetcher, scanner):
     """Calcula rotación sectorial."""
     spy_df = fetcher.ref_data.get('SPY')
     if spy_df is None:
         return [], 0
-    spy_c = spy_df['Close'].values
-    spy_ret = float(spy_c[-1]) / float(spy_c[-settings.RS_DIAS]) - 1
+    # Asegurar que trabajamos con arrays 1D
+    spy_c = spy_df['Close'].values.flatten()  # .flatten() garantiza 1D
+    if len(spy_c) < settings.RS_DIAS + 1:
+        return [], 0
+    spy_ret = (spy_c[-1] / spy_c[-settings.RS_DIAS]) - 1
     rows = []
     for sector, etf in scanner.sector_etf.items():
         if etf in fetcher.ref_data:
-            etf_c = fetcher.ref_data[etf]['Close'].values
-            etf_ret = float(etf_c[-1]) / float(etf_c[-settings.RS_DIAS]) - 1
-            rs = (1+etf_ret) / (1+spy_ret) if (1+spy_ret) != 0 else 0
+            etf_df = fetcher.ref_data[etf]
+            etf_c = etf_df['Close'].values.flatten()
+            if len(etf_c) < settings.RS_DIAS + 1:
+                continue
+            etf_ret = (etf_c[-1] / etf_c[-settings.RS_DIAS]) - 1
+            rs = (1 + etf_ret) / (1 + spy_ret) if (1 + spy_ret) != 0 else 0
             rows.append({
                 'sector': sector,
                 'etf': etf,
