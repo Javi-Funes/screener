@@ -8,7 +8,7 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 # Rutas
-RATIOS_JSON_PATH = os.getenv("RATIOS_JSON_PATH", "data/ratios_cedears.json")
+RATIOS_JSON_PATH = os.getenv("RATIOS_JSON_PATH", "results/ratios_cedears.json")
 RESULTS_DIR = os.getenv("RESULTS_DIR", "results")
 
 # Parámetros de trading (pueden sobreescribirse con variables de entorno)
