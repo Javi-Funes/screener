@@ -1,0 +1,35 @@
+name: Telegram Bot Polling
+
+on:
+  schedule:
+    # Cada 5 minutos (ajusta a tu preferencia)
+    - cron: '*/5 * * * *'
+  workflow_dispatch:  # Permite ejecución manual
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar polling
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python poll_telegram.py
+
+      - name: Guardar último update_id como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: last-update-id
+          path: last_update_id.txt
+          retention-days: 1
